@@ -2,15 +2,31 @@ interface features {
   [i: string]: string;
 }
 
+/**
+ * Animal interface
+ * Test sample:
+ * {
+    name: "Donkey",
+    description: "Some long description",
+    meal: "Some meal",
+    kernel: "Some kernel",
+    features: [
+      { name: "eyes", value: "brown" },
+      { name: "ears", value: "grey,ugly" },
+      { name: "tail.", value: "1 meters" },
+      { name: "mouth", value: "grey" }
+    ]
+  }
+ */
 interface AnimalDetail {
   name: String;
   description: String;
   meal: String;
   kernel: String;
-  features: Array<Object>; // features[]; this is madness!
+  features: Array<Object>;
 }
 
-class Animal {
+export class Animal {
   constructor(public _animalData: AnimalDetail) {
     this._animalData = _animalData;
   }
@@ -19,15 +35,7 @@ class Animal {
    * Do greeting
    */
   greet() {
-    document.getElementById("app").innerHTML = `
-    <h1>${this._animalData.name}</h1>
-    <div>
-      <p>${this._animalData.description}</p>
-      <ul id="list"></ul>
-    </div>
-    `;
-
-    this.makeList();
+    return `Hello ${this._animalData.name}!`;
   }
 
   /**
@@ -41,21 +49,3 @@ class Animal {
     document.getElementById("list").innerHTML = list;
   }
 }
-
-let newAnimal = new Animal({
-  name: "Donkey",
-  description: "Some long description",
-  meal: "Some meal",
-  kernel: "Some kernel",
-  features: [
-    { name: "eyes", value: "brown" },
-    { name: "ears", value: "grey,ugly" },
-    { name: "tail.", value: "1 meters" },
-    { name: "mouth", value: "grey" }
-  ]
-});
-
-/**
- * Play with
- */
-newAnimal.greet();
